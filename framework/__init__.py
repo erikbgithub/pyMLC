@@ -7,6 +7,10 @@ from framework.algorithm import gradient_desc
 
 def normalizer(X):
     """
+    generates a matrix of normalizing parameters which will be applied to
+    getX() and gradient_desc()
+    :param X: the raw data that should be normalized
+    :return: normalizing vector
     """
     return matrix([[(sum(X.T[i].flat) if i > 0 else 1.0) for i in xrange(X.shape[1])]])
 
