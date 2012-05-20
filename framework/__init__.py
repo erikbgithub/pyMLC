@@ -5,14 +5,21 @@ from numpy import matrix
 from framework.io import read_file
 from framework.algorithm import gradient_desc
 
-def getX(raw):
+def normalizer(X):
+    """
+    """
+    return matrix([[(sum(X.T[i].flat) if i > 0 else 1.0) for i in xrange(X.shape[1])]])
+
+def getX(raw,norm=None):
     """
     takes the raw data and generates a matrix from it, with each row's
     first element replaced by 1. That's nessesary for gradient_desc.
     :param raw: a numpy.matrix with float() elements
+    :param norm: a vector to normalize getX
     :return: a numpy.matrix
     """
-    return matrix([[(raw[i,j] if j > 0 else 1) for j in range(raw.shape[1])] for i in range(raw.shape[0])])
+    p_norm = norm if norm != None else matrix([[1,1,1]])
+    return matrix([[(raw[i,j] if j > 0 else 1) for j in xrange(raw.shape[1])] for i in xrange(raw.shape[0])]) / p_norm
 
 def getY(raw):
     """
@@ -20,8 +27,7 @@ def getY(raw):
     :param raw: a numpy.matrix with float() elements
     :return: a numpy.matrix
     """
-    return matrix([[raw[i,0]] for i in range(raw.shape[0])])
-
+    return matrix([[raw[i,0]] for i in xrange(raw.shape[0])])
 
 def prepData(data):
     """
@@ -45,7 +51,8 @@ def learn_data(data,algo=None):
              in the param data must be the same number!
     """
     algorithm = algo if algo != None else gradient_desc
-    return (lambda theta: lambda inp: (prepData(inp) * theta)[0,0])(algorithm(getX(data),getY(data)))
+    norm = normalizer(data)
+    return (lambda theta: lambda inp: (prepData(inp) * theta)[0,0])(algorithm(getX(data,norm),getY(data)) / norm.T)
 
 def learn_from_io(data_descr,algo=None,io=None):
     """

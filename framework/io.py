@@ -13,4 +13,3 @@ def read_file(name):
   """
   with open(name,"r") as file:
     return [[float(x) for x in re.sub(r'\s','',line).split(",")] for line in file if "#" not in line]
-
