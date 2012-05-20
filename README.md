@@ -6,8 +6,11 @@ pyMLC is a python framework based on what I learned from [ML class](http://www.m
 Usage
 ============
 
-Simply download and use `./main.py --help` to get started.
-You will need numpy and python2.7, though.
+To use this framework you need Python2.7 and Numpy installed.
+Simply download pyMLC and test if everything works with `./main.py -h`
+
+Now I will guide you through an example. People familiar with the Google
+classification service shouldn't be too unfamiliar with the process.
 
 Example:
 
