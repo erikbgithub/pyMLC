@@ -1,12 +1,12 @@
 Description
 ===========
 
-pyMLC is a python framework based on what I learned from [ML class](ml-class.com). It contains basic functionality for machine learning purposes.
+pyMLC is a python framework based on what I learned from [ML class](http://www.ml-class.com). It contains basic functionality for machine learning purposes.
 
 Usage
 ============
 
-Simply download and use `./main.py --help` `to get started.
+Simply download and use `./main.py --help` to get started.
 You will need numpy and python2.7, though.
 
 Example:
@@ -31,6 +31,7 @@ and input.csv:
     100,6
 
 __What happens here?__
+
 data.csv contains csv data with 3 datasets which begin with the result and continue with 2 features each.
 input.csv contains 4 observations, which also have 2 features like the training data.
 
